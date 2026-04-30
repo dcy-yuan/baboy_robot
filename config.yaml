@@ -1,0 +1,34 @@
+# Finger Recognition Configuration
+
+camera:
+  device_id: 0
+  width: 320               # VM 建议 320, 物理机可用 640
+  height: 240              # VM 建议 240, 物理机可用 480
+  fps: 30
+
+hand_detection:
+  model_complexity: 0       # 0=最快(VM推荐) 1=均衡 2=高精度
+  min_detection_confidence: 0.7
+  min_tracking_confidence: 0.5
+  max_hands: 2              # 检测双手
+
+finger:
+  raised_threshold: 0.02
+
+display:
+  window_name: "Finger Recognition"
+  show_fps: true
+  show_landmarks: true
+  show_finger_count: true
+  show_handedness: true
+  mirror: true
+
+landmark_style:
+  tip_radius_ratio: 0.025
+  joint_radius_ratio: 0.012
+  connection_thickness: 4
+  joint_color: [0, 220, 255]
+  connection_color: [0, 200, 0]
+  tip_color: [0, 0, 255]
+  outline_thickness: 2
+  outline_color: [255, 255, 255]
