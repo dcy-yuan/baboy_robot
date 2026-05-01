@@ -1,0 +1,12 @@
+{
+  "python.terminal.activateEnvironment": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.env.linux": {
+    "PYTHONUNBUFFERED": "1"
+  },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.python"
+  }
+}

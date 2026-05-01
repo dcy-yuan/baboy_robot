@@ -1,0 +1,47 @@
+# Finger Recognition Configuration
+# 适用: Linux Ubuntu + VSCode + conda
+
+camera:
+  device_id: 0               # 笔记本摄像头=0, USB外接=1; 终端 ls /dev/video* 查看
+  width: 640                 # 摄像头采集分辨率
+  height: 480
+  fps: 30
+
+hand_detection:
+  model_complexity: 1        # 0=最快 1=均衡(推荐) 2=高精度
+  min_detection_confidence: 0.7
+  min_tracking_confidence: 0.5
+  max_hands: 2
+
+finger:
+  raised_threshold: 0.02
+
+display:
+  window_name: "Finger Recognition"
+  show_fps: true
+  show_landmarks: true
+  show_finger_count: true
+  show_handedness: true
+  mirror: true
+  display_scale: 1.5         # 窗口放大倍率 (1.0=原始, 1.5=放大50%, 2.0=两倍)
+
+landmark_style:
+  tip_radius_ratio: 0.025
+  joint_radius_ratio: 0.012
+  connection_thickness: 4
+  joint_color: [0, 220, 255]
+  connection_color: [0, 200, 0]
+  tip_color: [0, 0, 255]
+  outline_thickness: 2
+  outline_color: [255, 255, 255]
+
+servo:
+  enabled: true
+  port: "/dev/ttyUSB0"       # Arduino 串口; 终端 ls /dev/ttyACM* 或 /dev/ttyUSB* 查看
+  baud_rate: 115200
+  pins: [6, 9, 10, 11]      # 舵机引脚
+  min_angle: 45              # 放下(逆时针)角度
+  max_angle: 135             # 抬起(顺时针)角度
+  fingers: [1, 2, 3, 0]     # 手指→舵机映射: 1=食指→pin6, 2=中指→pin9, 3=无名指→pin10, 0=拇指→pin11
+  no_hand_angle: 90          # 未检测到手时的默认角度(初始位置)
+  proportional: false        # true=指尖高度比例控制, false=竖起/落下二值控制
