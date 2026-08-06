@@ -1,0 +1,15 @@
+# Default initial positions for dual_cr5_robot's ros2_control fake system
+
+initial_positions:
+  left_jt1: 0
+  left_jt2: 0
+  left_jt3: 0
+  left_jt4: 0
+  left_jt5: 0
+  left_jt6: 0
+  right_jt1: 0
+  right_jt2: 0
+  right_jt3: 0
+  right_jt4: 0
+  right_jt5: 0
+  right_jt6: 0

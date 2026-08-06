@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dual_cr5_robot">
+
+  <!-- 引入单臂CR5的宏定义 -->
+  <xacro:include filename="$(find cr5)/urdf/cr5_arm.xacro" />
+
+  <!-- ================= 共享底座定义 ================= -->
+  <link name="world_base">
+    <visual>
+      <origin xyz="0 0 0.05" rpy="0 0 0" />
+      <geometry>
+        <!-- 这里用一个简单的圆柱体代替底座视觉，你可以换成自己的mesh -->
+        <cylinder radius="0.2" length="0.05" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!-- ================= 实例化左臂 ================= -->
+  <!-- 调用宏，传入前缀 "left_" -->
+  <xacro:cr5 prefix="left_" />
+
+  <!-- 将左臂的base_link固定到共享底座的左侧 -->
+  <!-- 假设底座中心在0，左臂安装在y=0.3的位置 -->
+  <joint name="left_cr5_to_base" type="fixed">
+    <parent link="world_base" />
+    <child link="left_base_link" />
+    <!-- xyz: 左臂相对底座的平移， rpy: 旋转(左臂朝向右侧，绕Z轴旋转180度) -->
+    <origin xyz="0 0.25 0.1" rpy="0 0 0" />
+  </joint>
+
+  <!-- ================= 实例化右臂 ================= -->
+  <!-- 调用宏，传入前缀 "right_" -->
+  <xacro:cr5 prefix="right_" />
+
+  <!-- 将右臂的base_link固定到共享底座的右侧 -->
+  <joint name="right_cr5_to_base" type="fixed">
+    <parent link="world_base" />
+    <child link="right_base_link" />
+    <!-- xyz: 右臂相对底座的平移， rpy: 旋转(右臂朝向左侧，不旋转) -->
+    <origin xyz="0 -0.25 0.1" rpy="0 0 3.141592653589793" />
+  </joint>
+
+</robot>
